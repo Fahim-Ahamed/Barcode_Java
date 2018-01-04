@@ -5,7 +5,6 @@
  */
 package UI;
 
-import com.itextpdf.awt.geom.Rectangle;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -19,7 +18,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import static java.lang.System.exit;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -30,7 +28,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Border;
 import org.krysalis.barcode4j.impl.code128.Code128Bean;
 import org.krysalis.barcode4j.output.bitmap.BitmapCanvasProvider;
 
@@ -56,13 +53,15 @@ public class MainViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        try {
-            code();
-        } catch (IOException ex) {
-            Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (DocumentException ex) {
-            Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
+            btn.setOnAction(e->{
+                try {
+                    code();
+                } catch (IOException | DocumentException ex) {
+                    Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+        
 
     }
 
@@ -75,7 +74,7 @@ public class MainViewController implements Initializable {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         BitmapCanvasProvider canvas = new BitmapCanvasProvider(baos, "image/x-png", 400, BufferedImage.TYPE_BYTE_BINARY, false, 0);
-        code128.generateBarcode(canvas, "1234567890");
+        code128.generateBarcode(canvas, id.getText());
         canvas.finish();
 
 //write to png file
@@ -116,7 +115,7 @@ public class MainViewController implements Initializable {
         document.close();
 
         writer.close();
-        exit(0);
+        
 
     }
 

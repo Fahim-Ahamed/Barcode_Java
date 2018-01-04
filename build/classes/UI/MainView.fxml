@@ -11,6 +11,6 @@
       <Button fx:id="btn" layoutX="48.0" layoutY="101.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="156.0" text="Generate Bar Code" />
       <TextField fx:id="id" layoutX="48.0" layoutY="45.0" prefHeight="26.0" prefWidth="156.0" />
       <Label fx:id="code" layoutX="50.0" layoutY="168.0" prefHeight="69.0" prefWidth="250.0" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="33.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="img" fitHeight="150.0" fitWidth="200.0" layoutX="33.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
